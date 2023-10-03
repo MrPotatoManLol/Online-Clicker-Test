@@ -29,8 +29,8 @@ const cashPerSecVar = document.getElementById("cashPerSecVar");
 const giveCashButton = document.getElementById("giveCash");
 
 // Upgrade Buttons \\
-const Upgrade1Button = document.getElementById("Upgrade1Button");
-const Upgrade2Button = document.getElementById("Upgrade2Button");
+const Upgrade1Button = document.getElementById("Upgrade1Cost");
+const Upgrade2Button = document.getElementById("Upgrade2Cost");
   
 // Run On Start \\
 console.log("Current Version: " + VERSION);
