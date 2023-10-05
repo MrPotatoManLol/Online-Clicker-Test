@@ -118,10 +118,11 @@ function saveGame() {
       upgrade2Cost: Upgrade2Cost
     }
     localStorage.setItem("gameSave", JSON.stringify(gameSave));
+    console.log("Manually Saved Game");
 }
 
 setInterval(function() {
     saveGame();
-    console.log("Saved Game");
+    console.log("Autosaved");
 }, 15000) // 15000 ms = 15 seconds
 
