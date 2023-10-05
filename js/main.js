@@ -122,6 +122,7 @@ function saveGame() {
     }
     localStorage.setItem("gameSave", JSON.stringify(gameSave));
     console.log("Saved Game");
+    alert("Saved Game");
 }
 
 window.onload = function() {
