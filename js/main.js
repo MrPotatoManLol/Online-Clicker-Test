@@ -10,9 +10,12 @@ let DefaultCashPerSecond = 0;
 let CashPerClick = 1;
 let DefaultCashPerClick = 1;
 
+let Upgrade1Amt = 0;
+let Upgrade2Amt = 0;
+
 // Default Cost Vars \\
 const DEFAULT_UPGRADE1_COST = 10;
-const DEFAULT_UPGRADE2_COST = 50;
+const DEFAULT_UPGRADE2_COST = 100;
 
 // Cost Vars \\
 let Upgrade1Cost = DEFAULT_UPGRADE1_COST;
@@ -26,6 +29,10 @@ const cashAmtVar = document.getElementById("cashAmtVar");
 const cashPerClickAmtVar = document.getElementById("cashPerClickAmtVar");
 const currentImproveVar = document.getElementById("currentImproveVar");
 const cashPerSecVar = document.getElementById("cashPerSecVar");
+
+const Upgrade1AmtVar = document.getElementById("Upgrade1Amount");
+const Upgrade2AmtVar = document.getElementById("Upgrade2Amount");
+
 const giveCashButton = document.getElementById("giveCash");
 
 // Upgrade Buttons \\
@@ -41,7 +48,10 @@ function Update() {
     cashAmtVar.innerHTML = Cash.toString();
     currentImproveVar.innerHTML = CurrentImprovement.toString();
     cashPerClickAmtVar.innerHTML = CashPerClick.toString();
-    CashPerSecondVar.innerHTML = CashPerSecond.toString();
+    cashPerSecVar.innerHTML = CashPerSecond.toString();
+    
+    Upgrade1AmtVar.innerHTML = Upgrade1Amt.toString();
+    Upgrade2AmtVar.innerHTML = Upgrade2Amt.toString();
 
     Upgrade1Button.innerHTML = Upgrade1Cost.toString();
     Upgrade2Button.innerHTML = Upgrade2Cost.toString();
@@ -51,33 +61,49 @@ function giveCash() {
     Cash += CashPerClick;
     Update();
 }
-  
-function upgrade(upgradeType) {
+
+// Upgrade Functions \\
+function Upgrade(UpgradeType) {
     switch (UpgradeType) {
-        case "Upgrade1":
-            if (Cash <= Upgrade1Cost) {
+    	case ("Upgrade1"):
+    		if (Cash >= Upgrade1Cost) {
                 Cash -= Upgrade1Cost;
-                Upgrade1Cost += Math.round(Upgrade1Cost * 1.15);
-                CashPerClick += 1
+            	CashPerClick += 1;
+            	Upgrade1Cost += Math.floor(Upgrade1Cost * 0.50);
+                Upgrade1Amt += 1;
+            	Update();
+        	} else {
+        		console.log("Not enough Cash");
+        	}
+            break;
+            
+        case ("Upgrade2"):
+    	    if (Cash >= Upgrade2Cost) {
+        	    Cash -= Upgrade2Cost;
+    		    CashPerSecond += 1;
+                Upgrade2Cost += Math.floor(Upgrade2Cost * 0.55);
+                Upgrade2Amt += 1;
                 Update();
+            } else {
+        	    console.log("Not enough Cash");
             }
-            break;
-        
-        case "Upgrade2":
-            if (Cash >= Upgrade2Cost) {
-                Cash -= Upgrade2Cost;
-                Upgrade2Cost += Math.round(Upgrade2Cost * 1.25);
-                CashPerSecond += 5;
-                Update()
-            }
-            break;
+        break;
     }
+    
 }
 
-/**
+
+
 function loadGame() {
     var savedGame = JSON.parse(localStorage.getItem("gameSave"));
     if (typeof savedGame.cash !== "undefined") Cash = savedGame.cash;
+    if (typeof savedGame.cashPerClick !== "undefined") CashPerClick = savedGame.cashPerClick;
+    if (typeof savedGame.cashPerSec !== "undefined") CashPerSecond = savedGame.cashPerSec;
+    if (typeof savedGame.upgrade1Amt !== "undefined") Upgrade1Amt = savedGame.upgrade1Amt;
+    if (typeof savedGame.upgrade1Cost !== "undefined") Upgrade1Cost = savedGame.upgrade1Cost;
+    if (typeof savedGame.upgrade2Amt !== "undefined") Upgrade2Amt = savedGame.upgrade2Amt;
+    if (typeof savedGame.upgrade2Cost !== "undefined") Upgrade2Cost = savedGame.upgrade2Cost;
+    Update();
 }
     
   
@@ -85,9 +111,17 @@ function saveGame() {
     var gameSave = {
       cash: Cash,
       cashPerClick: CashPerClick,
-      upgrades: Upgrades,
-      improvements: Improvements
+      cashPerSec: CashPerSecond,
+      upgrade1Amt: Upgrade1Amt,
+      upgrade1Cost: Upgrade1Cost,
+      upgrade2Amt: Upgrade2Amt,
+      upgrade2Cost: Upgrade2Cost
     }
     localStorage.setItem("gameSave", JSON.stringify(gameSave));
 }
-*/
+
+setInterval(function() {
+    saveGame();
+    console.log("Saved Game");
+}, 15000) // 15000 ms = 15 seconds
+

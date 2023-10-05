@@ -26,15 +26,15 @@
       <div class="upgradesMenu" id="upgrades">
         <h2 id="upgradesTitle">Cash Per Click Upgrades</h2>
         <p>Upgrades help increase the money you earn.</p>
-        <button class="upgradebutton" id="upgrade1Button" onClick="upgrade('Upgrade1')">Upgrade 1: <span id="Upgrade1Cost"></span></button>
-        <button class="upgradebutton" id="upgrade2Button" onClick="upgrade('Upgrade2')">Upgrade 2: <span id="Upgrade2Cost"></span></button>
+        <button class="upgradebutton" id="upgrade1Button" onClick="Upgrade('Upgrade1')">+1 Cash Per Click [<span id="Upgrade1Amount">0</span>]: $<span id="Upgrade1Cost"></span></button>
+        <button class="upgradebutton" id="upgrade2Button" onClick="Upgrade('Upgrade2')">+1 Cash Per Second [<span id="Upgrade2Amount">0</span>]: $<span id="Upgrade2Cost"></span></button>
       </div>
       
       <!-- Improvements -->
       <div class="upgradesMenu" id="improvements">
         <h2 id="improvementsTitle">Improve</h2>
         <p>Improvements reset everything but gives permanant Money Per Click</p>
-        <button class="improveButton" id="improve1" onClick="improve()">Improve 1: <span id="improvementCost"></button>
+        <button class="improveButton" id="improve1" onClick="improve()">Improve [0]: <span id="improvementCost"></span></button>
       </div>
     </div>
   </body>
