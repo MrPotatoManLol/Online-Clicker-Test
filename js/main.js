@@ -23,6 +23,7 @@ let Upgrade2Cost = DEFAULT_UPGRADE2_COST;
 
 // Misc Vars \\
 const VERSION = "Pre-Release";
+let TimeUntilAutoSave = 15;
   
 // HTML Elements \\
 const cashAmtVar = document.getElementById("cashAmtVar");
@@ -34,6 +35,8 @@ const Upgrade1AmtVar = document.getElementById("Upgrade1Amount");
 const Upgrade2AmtVar = document.getElementById("Upgrade2Amount");
 
 const giveCashButton = document.getElementById("giveCash");
+
+const timeUntilAutoSave = document.getElementById("timeUntilAutoSave");
 
 // Upgrade Buttons \\
 const Upgrade1Button = document.getElementById("Upgrade1Cost");
@@ -55,6 +58,8 @@ function Update() {
 
     Upgrade1Button.innerHTML = Upgrade1Cost.toString();
     Upgrade2Button.innerHTML = Upgrade2Cost.toString();
+    
+    timeUntilAutoSave.innerHTML = TimeUntilAutoSave.toString();
 }
   
 function giveCash() {
@@ -103,7 +108,6 @@ function loadGame() {
     if (typeof savedGame.upgrade1Cost !== "undefined") Upgrade1Cost = savedGame.upgrade1Cost;
     if (typeof savedGame.upgrade2Amt !== "undefined") Upgrade2Amt = savedGame.upgrade2Amt;
     if (typeof savedGame.upgrade2Cost !== "undefined") Upgrade2Cost = savedGame.upgrade2Cost;
-    Update();
 }
     
   
@@ -118,11 +122,21 @@ function saveGame() {
       upgrade2Cost: Upgrade2Cost
     }
     localStorage.setItem("gameSave", JSON.stringify(gameSave));
-    console.log("Manually Saved Game");
+    console.log("Saved Game");
+}
+
+window.onload = function() {
+    loadGame();
+    Update()
 }
 
 setInterval(function() {
     saveGame();
     console.log("Autosaved");
 }, 15000) // 15000 ms = 15 seconds
+
+setInterval(function() {
+    Cash += CashPerSecond;
+    Update();
+}, 1000) // 1000 ms = 1 second
 
