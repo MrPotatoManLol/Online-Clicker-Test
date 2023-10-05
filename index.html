@@ -8,6 +8,9 @@
   </head>
 
   <body>
+    <!-- JavaScript -->
+    
+
     <!-- Main -->
     <div id="mainScreen">
       <h1 id="mainTitle"></h1>
@@ -17,10 +20,11 @@
       <p id="cashPerSec">Cash Per Second: <span id="cashPerSecVar"></span></p>
       <button id="clickButton" onClick="giveCash()">Click Me!</button>
       <button id="saveGame" onClick="saveGame()">Save Game</button>
+      <p>Time until autosave: <span id="timeUntilAutoSave"></span>s</p>
     </div>
 
-    <!-- Upgrades -->
     <div id="upgradeMenus">
+    <!-- Upgrades -->
       <div class="upgradesMenu" id="upgrades">
         <h2 id="upgradesTitle">Cash Per Click Upgrades</h2>
         <p>Upgrades help increase the money you earn.</p>
@@ -32,11 +36,10 @@
       <div class="upgradesMenu" id="improvements">
         <h2 id="improvementsTitle">Improve</h2>
         <p>Improvements reset everything but gives permanant Money Per Click</p>
-        <button class="improveButton" id="improve1" onClick="improve()">Improve [0]: $<span id="improvementCost"></span></button>
+        <button class="improveButton" id="improve1" onClick="improve()">Improve [0]: <span id="improvementCost"></span></button>
       </div>
     </div>
   </body>
-
   <script type="text/javascript" src="https://mrpotatomanlol.github.io/Online-Clicker-Test/js/main.js"></script>
 
 </html>
