@@ -13,9 +13,11 @@ let DefaultCashPerClick = 1;
 let Upgrade1Amt = 0;
 let Upgrade2Amt = 0;
 
+
 // Default Cost Vars \\
 const DEFAULT_UPGRADE1_COST = 10;
 const DEFAULT_UPGRADE2_COST = 100;
+
 
 // Cost Vars \\
 let Upgrade1Cost = DEFAULT_UPGRADE1_COST;
@@ -23,7 +25,7 @@ let Upgrade2Cost = DEFAULT_UPGRADE2_COST;
 
 // Misc Vars \\
 const VERSION = "Pre-Release";
-let TimeUntilAutoSave = 15;
+
   
 // HTML Elements \\
 const cashAmtVar = document.getElementById("cashAmtVar");
@@ -36,7 +38,6 @@ const Upgrade2AmtVar = document.getElementById("Upgrade2Amount");
 
 const giveCashButton = document.getElementById("giveCash");
 
-const timeUntilAutoSave = document.getElementById("timeUntilAutoSave");
 
 // Upgrade Buttons \\
 const Upgrade1Button = document.getElementById("Upgrade1Cost");
@@ -58,8 +59,6 @@ function Update() {
 
     Upgrade1Button.innerHTML = Upgrade1Cost.toString();
     Upgrade2Button.innerHTML = Upgrade2Cost.toString();
-    
-    timeUntilAutoSave.innerHTML = TimeUntilAutoSave.toString();
 }
   
 function giveCash() {
